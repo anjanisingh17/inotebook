@@ -2,8 +2,9 @@ const mongoose  = require('mongoose')
 const validator =  require('validator')
 const bcrypt = require('bcryptjs');
 const jwt  =  require('jsonwebtoken')
-const userSchema = new mongoose.Schema({
+const secretkey = "Thisismyjsonwebtokensecretkeytouse";   
 
+const userSchema = new mongoose.Schema({
     name:{
         type: String,
         required: true,
@@ -45,8 +46,8 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.generateAuthToken = async function(){
     try{
       //Here we use toString() because _id is an object so convert object into string we used toString()
-        const token = await jwt.sign({_id:this._id.toString()},'Thisismyjsonwebtokensecretkeytouse')
-        console.log(`Token generated in the schema ${token}`)
+        const token = await jwt.sign({_id:this._id.toString()},secretkey)
+        // console.log(`Token generated in the schema ${token}`)
         this.tokens = this.tokens.concat({token:token})
         return token;
     }

@@ -1,11 +1,18 @@
 const express = require('express')
-const {createuser,loginuser} = require('../controllers/users')
-const createnotes = require('../controllers/notes')
+const {createuser,loginuser,getUser} = require('../controllers/users')
+const {addnotes,fetchallnotes} = require('../controllers/notes')
+const fetchuser = require('../middleware/fetchUser')
 
 const router = new express.Router();
 
+//Routers for 
 router.post('/api/users/user_create',createuser)
 router.post('/api/users/user_login',loginuser)
-router.post('/api/notes',createnotes)
+router.post('/api/users/getusers',fetchuser,getUser)
 
-module.exports = router
+//Routers for notes
+router.get('/api/notes/fetchallnotes',fetchuser,fetchallnotes)
+router.post('/api/notes/addnotes',fetchuser,addnotes)
+
+
+module.exports = router     
