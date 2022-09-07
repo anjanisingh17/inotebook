@@ -7,16 +7,25 @@ const noteSchema = new mongoose.Schema({
     },
     title:{
         type: String,
-        required: true
+        required: true,
+        validate(value){
+            if(value.length <=3){
+                throw new Error('Description should be min 3 character')
+            }
+        }
     },
     description:{
         type: String,
         required: true,
-        unique: true
+        validate(value){
+            if(value.length <=3){
+                throw new Error('Description should be min 3 character')
+            }
+        }
     },
     tag:{
         type: String,
-        default: Date.now
+        required:true
     },
     date: {
         type: Date,
