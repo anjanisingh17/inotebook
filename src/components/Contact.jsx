@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
-import {FirstName,LastName} from '../App'
+import React from 'react'
 
 
 function Contact() {
 
-    const fname = useContext(FirstName)
-    const lname = useContext(LastName)
 
 
     return (    
-    <div>This is contact page...... For more Information contact to : {fname} {lname}</div>
+    <div>This is contact page...... For more Information contact to : </div>
   )
 }
 
