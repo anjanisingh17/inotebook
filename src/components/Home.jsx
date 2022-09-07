@@ -1,8 +1,7 @@
-import React from 'react'
-import Contact from './Contact'
-
+import Notes from "./Notes"
 
 function Home() {
+
   return (
     <>
     <div className='conatiner my-3'>
@@ -26,9 +25,7 @@ function Home() {
 </form>
 </div>
 </div>
-<div className='conatiner my-3'>
-        <h2> Your Notes</h2>
-   </div>
+<Notes />
     </>
     
   )
