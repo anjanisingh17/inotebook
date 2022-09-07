@@ -9,7 +9,7 @@ function Contact() {
 
 
     return (    
-    <div>This is contact page. For more Information contact to : {fname} {lname}</div>
+    <div>This is contact page...... For more Information contact to : {fname} {lname}</div>
   )
 }
 
