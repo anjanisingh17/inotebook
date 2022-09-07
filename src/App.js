@@ -17,6 +17,7 @@ function App() {
     <>
     <FirstName.Provider value="Thapa">
      <LastName.Provider value="Technical">
+        <Contact />
      </LastName.Provider>
      </FirstName.Provider>
 
