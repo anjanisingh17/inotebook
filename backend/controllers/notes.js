@@ -72,11 +72,13 @@ const deletenote = async(req,res)=>{
         if(note.user.toString() !== req.user._id){ return res.status(401).send("Not Allowed") }
         //Find and delete the note
         note = await Note.findByIdAndDelete(req.params.id)
-        res.status(200).send(`Note deleted successully for note id : ${req.params.id}`)
+        res.status(200).json({success:true,message:`Note deleted successully for note id : ${req.params.id}`})
       }
     catch(err){
         console.log("Note Delete Api error : ",err)
-        res.status(500).send(`Interval Error`)
+        // res.status(500).send(`Interval Error`)
+        res.status(400).json({success:false,message:err})
+
     }
 }
 

@@ -64,8 +64,9 @@ const deleteNote = async(id)=>{
       console.log(json)
     //API CALL END
 
-    console.log('Deleting a note ....'+id)
-    const  newNotes =  notes.filter((note)=>{
+    // console.log('Deleting a note ....',id)
+    
+    const  newNotes = notes.filter((note)=>{
        return note._id !==  id
     })
     setNotes(newNotes)
@@ -88,7 +89,7 @@ const editNote = async(id, title, description, tag)=>{
     
     
     //Logic to edit in client
-    for(let index = 0; index. notes.length; index++){
+    for(let index = 0; index.notes.length; index++){
         const element = notes[index];
         if(element._id === id){
              element.title = title;
