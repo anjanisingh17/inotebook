@@ -5,7 +5,7 @@ import noteContext from '../context/notes/NoteContext';
 function AddNote() {
     const context = useContext(noteContext);
     const {notes, addNote} = context
-    const [note,setNote] = useState({title:"",description:"",tags: ""})
+    const [note,setNote] = useState({title:"",description:"",tag: ""})
 
     const onChange = (e)=>{
         setNote({...note,[e.target.name]: e.target.value})
@@ -32,8 +32,8 @@ function AddNote() {
   </div>
 
   <div className="mb-3">
-    <label  className="form-label">Tags</label>
-    <input type="text" className="form-control" id="tags" name="tags" onChange={onChange} />
+    <label  className="form-label">tag</label>
+    <input type="text" className="form-control" id="tag" name="tag" onChange={onChange} />
   </div>
 
 
