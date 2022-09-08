@@ -6,6 +6,7 @@ import Home from './components/Home'
 import About from './components/About'
 import NoteState from './context/notes/NoteState';
 import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom';
+import Alert from './components/Alert';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
    <NoteState>
       <Routers>
         <Navbar />
+        <Alert msg="This is message" />
         <div className="container">
 
         <Routes>      
