@@ -17,7 +17,7 @@ const {note,updateNote} = props
           <i className="fa fa-trash-o mx-2" aria-hidden="true" onClick={()=>{deleteNote(note._id)}}></i>
           <i className="fa fa-pencil-square-o mx-2" onClick={()=>{updateNote(note)}} aria-hidden="true"></i>
           </div>
-          <p className="card-text">{note.description} Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+          <p className="card-text">{note.description}</p>
          
 
       </div>

@@ -25,7 +25,7 @@ const createuser = async(req,res)=>{
     }
     catch(err){
         console.log(err)
-        res.send(err)
+        res.json(err)
     }  
 
 
@@ -45,16 +45,19 @@ const loginuser = async(req,res)=>{
 
         const token = await userfound.generateAuthToken();    
         // console.log(`After LOGIN generating tokens ${token}`)
-
+          
         if(isMatch){
-          res.status(200).send({token})
+            let success = true;  
+          res.status(200).json({success,token})
         }else{
-            res.send('Please try to login with correct credentials')
+            let success = false;  
+            res.json({success,'error':'Please try to login with correct credentials'})
         }
     }
     catch(err){
-        console.log(err)
-        res.send('Please try to login with correct credentials')
+        console.log('login error',err)
+        let success = false;  
+        res.json({success,'error':'Please try to login with correct credentials'})
     }  
 
 }
@@ -65,9 +68,9 @@ const getUser = async(req,res)=>{
     try{
       const  userId = req.user._id
         const user =  await User.findById(userId).select(["-tokens","-password"]);
-        res.send(user);
+        res.json(user);
     }catch(err){
-        res.send(err);
+        res.json(err);
     }
 
 }

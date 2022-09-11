@@ -30,7 +30,6 @@ function Notes() {
 
   const handleClick = (e) => {
     e.preventDefault()
-    console.log('upadting a note ...', note)
     refClose.current.click(); 
     editNote(note.id, note.etitle, note.edescription, note.etag)
   }
@@ -57,11 +56,11 @@ function Notes() {
               <form>
                 <div className="mb-3">
                   <label className="form-label">Title</label>
-                  <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} onChange={onChange} aria-describedby="emailHelp" />
+                  <input type="text" className="form-control" id="etitle" name="etitle" value={note.etitle} onChange={onChange} aria-describedby="emailHelp" minLength={5} />
                 </div>
                 <div className="mb-3">
                   <label className="form-label">Description</label>
-                  <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
+                  <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} minLength={5} />
                 </div>
 
                 <div className="mb-3">
@@ -73,7 +72,7 @@ function Notes() {
             </div>
             <div className="modal-footer">
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary" onClick={handleClick} >Update Note</button>
+              <button disabled={note.etitle.length <5 || note.edescription.length <5} type="button" className="btn btn-primary" onClick={handleClick} >Update Note</button>
             </div>
           </div>
         </div>
@@ -82,6 +81,10 @@ function Notes() {
 
       <div className='row my-3'>
         <h2> Your Notes</h2>
+        <div className='container'>
+        {notes.length === 0 && 'No notes to display'}
+        </div>
+
         {notes.map((note) => {
 
           return <NoteItem key={note._id} updateNote={updatenote} note={note} />

@@ -40,13 +40,10 @@ const addNote = async(title, description, tag)=>{
         },
         body: JSON.stringify({title, description, tag}) 
       });
-      let json =  await response.json(); 
+      let note =  await response.json(); 
     //API CALL END
 
-
-    console.log(`Add a note ...`)
-
-      setNotes(notes.concat(json))  
+      setNotes(notes.concat(note))  
 }
 
 //Delete a Note
@@ -61,10 +58,8 @@ const deleteNote = async(id)=>{
         },
       });
       const json = await response.json(); 
-      console.log(json)
     //API CALL END
 
-    // console.log('Deleting a note ....',id)
     
     const  newNotes = notes.filter((note)=>{
        return note._id !==  id
