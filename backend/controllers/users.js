@@ -10,8 +10,10 @@ const createuser = async(req,res)=>{
         const userfound = await User.findOne({email:req.body.email})
 
         if(userfound){
-          res.status(401).send('One user found already with this email')
+          let success = false;  
+          res.status(401).json({success,'error':'User already exists with this email'})
         }else{
+            let success = true;
             //Create new user
             const data =  new User(req.body);   
             //Here calling a function which is responsible to generate token and here data is instance of User's Model 
@@ -19,13 +21,15 @@ const createuser = async(req,res)=>{
             const token = await data.generateAuthToken();    
             console.log(`After generating tokens ${token}`)
             const result = await data.save();
-            res.status(201).send(result);
+
+            res.status(201).json({success,result});
         }
 
     }
     catch(err){
         console.log(err)
-        res.json(err)
+        let success = false
+        res.json({success,err})
     }  
 
 

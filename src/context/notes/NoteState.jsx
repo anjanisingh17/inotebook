@@ -15,7 +15,7 @@ const getNotes = async()=>{
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzE1ZjA5OTE4NTdlOTNjMGQ1YmNlMjciLCJpYXQiOjE2NjI0NTAwNjB9.f-ksfVhrkHzHEXSWWJr4GX61AExKv97o-3W4z6YYLfk' 
+          'auth-token': localStorage.getItem('token') 
         }
       });    
       const json  = await response.json();
@@ -36,7 +36,7 @@ const addNote = async(title, description, tag)=>{
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzE1ZjA5OTE4NTdlOTNjMGQ1YmNlMjciLCJpYXQiOjE2NjI0NTAwNjB9.f-ksfVhrkHzHEXSWWJr4GX61AExKv97o-3W4z6YYLfk' 
+          'auth-token': localStorage.getItem('token') 
         },
         body: JSON.stringify({title, description, tag}) 
       });
@@ -54,10 +54,11 @@ const deleteNote = async(id)=>{
         method: 'DELETE', 
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzE1ZjA5OTE4NTdlOTNjMGQ1YmNlMjciLCJpYXQiOjE2NjI0NTAwNjB9.f-ksfVhrkHzHEXSWWJr4GX61AExKv97o-3W4z6YYLfk' 
+          'auth-token': localStorage.getItem('token') 
         },
       });
       const json = await response.json(); 
+      console.log(json)
     //API CALL END
 
     
@@ -76,11 +77,12 @@ const editNote = async(id, title, description, tag)=>{
         method: 'PUT', 
         headers: {
           'Content-Type': 'application/json',
-          'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzE1ZjA5OTE4NTdlOTNjMGQ1YmNlMjciLCJpYXQiOjE2NjI0NTAwNjB9.f-ksfVhrkHzHEXSWWJr4GX61AExKv97o-3W4z6YYLfk' 
+          'auth-token': localStorage.getItem('token') 
         },
         body: JSON.stringify({title, description, tag}) 
       });
       const json =  await response.json(); 
+      console.log(json) 
     
     let newNotes = JSON.parse(JSON.stringify(notes))
     //Logic to edit in client

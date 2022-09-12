@@ -2,9 +2,9 @@ import React from 'react'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 
-function Login() {
+function Login(props) {
 
-  const [credentials, setCredentials] = useState({email:" ", password:" "})
+  const [credentials, setCredentials] = useState({email:"", password:""})
   let navigate  = useNavigate();
 
   const handleSubmit = async(e)=>{
@@ -24,9 +24,10 @@ function Login() {
       console.log('ok')
       localStorage.setItem('token',json.token)
       navigate('/')
+      props.showAlert("Logged in successfully","success")
     }
     else{
-      alert('Invalid credentials')
+      props.showAlert("Invalid Credentials","danger")
     }
   }
 
@@ -37,6 +38,8 @@ function Login() {
 
   return (
     <>
+    <div className='container'>
+      <h4 style={{textAlign:'center'}}>Login</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Email address</label>
@@ -44,12 +47,12 @@ function Login() {
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
-          <input type="text" className="form-control" name='password' id="password" onChange={onChange} value={credentials.password} />
+          <input type="password" className="form-control" name='password' id="password" onChange={onChange} value={credentials.password} />
         </div>
    
         <button type="submit" className="btn btn-primary" >Submit</button>
       </form>
-
+      </div>
     </>
   )
 }
